@@ -2,6 +2,7 @@ library(vroom)
 library(dplyr)
 library(stringr)
 library(purrr)
+library(ggplot2)
 
 selectCols <- c(
     "NCT Number",
@@ -31,10 +32,13 @@ dat <- dat |>
 
 count(dat, study_status)
 
-dat |> 
-    filter(study_status == "APPROVED_FOR_MARKETING") |> 
+mkDat <- dat |> 
+    filter(study_status == "APPROVED_FOR_MARKETING")
+    
+mkDat |>
+    count(sponsor) |> 
     View()
-
+    
 
 
 
